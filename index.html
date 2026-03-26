@@ -2,189 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Be My Valentine ❤️</title>
+<title>Be My Bandi ❤️</title>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #ffe6e6;
-    margin: 0;
-    overflow: hidden;
-  }
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #ffe6e6;
+  margin: 0;
+  overflow: hidden;
+}
 
-  h1 {
-    margin-top: 80px;
-    color: #ff3366;
-  }
+h1 {
+  margin-top: 80px;
+  color: #ff3366;
+}
 
-  .btn {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    position: absolute;
-  }
+.btn {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+}
 
-  #yes {
-    background-color: #4CAF50;
-    color: white;
-    left: 40%;
-    top: 55%;
-  }
+#yes {
+  background-color: #4CAF50;
+  color: white;
+  left: 40%;
+  top: 55%;
+}
 
-  #no {
-    background-color: #ff4d4d;
-    color: white;
-    left: 55%;
-    top: 55%;
-  }
+#no {
+  background-color: #ff4d4d;
+  color: white;
+  left: 55%;
+  top: 55%;
+}
 
-  #noText {
-    position: absolute;
-    font-size: 16px;
-    color: #cc0052;
-    text-align: center;
-    width: 150px;
-  }
+#noText {
+  position: absolute;
+  font-size: 20px;
+  color: black;
+  text-align: center;
 
-  #message {
-    display: none;
-    font-size: 30px;
-    color: #ff0066;
-    margin-top: 50px;
-  }
+  max-width: 80vw;   /* ✅ responsive width */
+  left: 0;
+  top: 0;
+}
 
-  .heart {
-    position: absolute;
-    color: red;
-    font-size: 20px;
-    animation: floatUp linear infinite;
-  }
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  animation: floatUp linear infinite;
+}
 
-  @keyframes floatUp {
-    from {
-      transform: translateY(100vh);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-10vh);
-      opacity: 0;
-    }
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
   }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<h1 id="title">Will You Be My Valentine? ❤️</h1>
+<h1 id="title">Anshu..Will You Be My GirlFriend... 🫣? ❤️</h1>
 
-<button id="yes" class="btn">Yes 💖</button>
-<button id="no" class="btn">No 😢</button>
+<button id="yes" class="btn">Yes why Not💖</button>
+<button id="no" class="btn">Na bolne wali gandi 😢</button>
 
 <div id="noText"></div>
-<div id="message">Yay!!! 💕 I knew Tu haaa boligiiii hiii hureeeee 😍</div>
 
 <script>
-  const noBtn = document.getElementById("no");
-  const yesBtn = document.getElementById("yes");
-  const noText = document.getElementById("noText");
-  const message = document.getElementById("message");
-  const title = document.getElementById("title");
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const noText = document.getElementById("noText");
+const title = document.getElementById("title");
 
-  let speed = 1;
-  let heartInterval = null;
+let yesSize = 1;
+let noSize = 1;
 
-  const messages = [
-    "Are you sure Dp? 😢",
-    "Barbosa Think again 😏",
-    "Don't break my heart shumanu💔",
-    "Last chance puniyaa soch le 😭",
-    "I'll be really sad 🥺",
-    "dekh dukhi kar rai h tu mujhe",
-    "Pleaseeeee punnuuu💕",
-    "nai man rai tu regret karegi 😜"
-  ];
+const messages = [
+"Are you sure....? 😢",
+"Dowara Soch le tu mana kar rai....!!",
+"Jal-Kuk-dii Think again yarrr 😏",
+"Don't break my heart Anshu...🥺💔",
+"Last chance de ra moka h avi v.. 😭",
+"Tujhe mera Chehra 🥺 nai dikh ra..?",
+"Dekh dukhi kar rai h tu mujhe...🥺.",
+"Pleaseeeee Anshuuuuuuuuuuuu.....💕",
+"Nai man rai tu... fir katti Ho jaunga",
+"Sun Chal Ice Cream Dilaunga pakka Promise... ha kar deee 🍦"
+];
 
-  function moveNoButton() {
-    const padding = 20;
-
-    const yesRect = yesBtn.getBoundingClientRect();
-    const titleRect = title.getBoundingClientRect();
-
-    let x, y;
-    let safe = false;
-
-    while (!safe) {
-      x = Math.random() * (window.innerWidth - 150);
-      y = Math.random() * (window.innerHeight - 100);
-
-      const noRect = {
-        left: x,
-        right: x + 100,
-        top: y,
-        bottom: y + 40
-      };
-
-      // Check overlap with YES button
-      const overlapYes = !(
-        noRect.right < yesRect.left ||
-        noRect.left > yesRect.right ||
-        noRect.bottom < yesRect.top ||
-        noRect.top > yesRect.bottom
-      );
-
-      // Check overlap with title
-      const overlapTitle = !(
-        noRect.bottom < titleRect.top ||
-        noRect.top > titleRect.bottom
-      );
-
-      if (!overlapYes && !overlapTitle) {
-        safe = true;
-      }
-    }
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
-    // Position text UNDER button with gap
-    noText.style.left = x + "px";
-    noText.style.top = (y + 55) + "px"; // gap added
-
-    // Speed increase
-    speed += 0.3;
-    noBtn.style.transition = `all ${0.3 / speed}s`;
-    noText.style.transition = `all ${0.3 / speed}s`;
-
-    // Message
-    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-    noText.innerText = randomMsg;
-  }
-
-  noBtn.addEventListener("mouseover", moveNoButton);
-
-  yesBtn.addEventListener("click", () => {
-    message.style.display = "block";
-
-    // Start hearts ONLY after YES
-    if (!heartInterval) {
-      heartInterval = setInterval(createHeart, 300);
-    }
-  });
-
-  function createHeart() {
+function createHearts() {
+  for (let i = 0; i < 40; i++) {
     const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
     heart.classList.add("heart");
-    heart.innerText = "💖";
 
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
 
     document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
+    setTimeout(() => heart.remove(), 6000);
   }
+}
+
+function moveNoButton() {
+  const yesRect = yesBtn.getBoundingClientRect();
+  const titleRect = title.getBoundingClientRect();
+
+  let x, y;
+  let safe = false;
+
+  while (!safe) {
+    x = Math.random() * (window.innerWidth - 160);
+    y = Math.random() * (window.innerHeight - 120);
+
+    const farFromYes =
+      Math.abs(x - yesRect.left) > 180 &&
+      Math.abs(y - yesRect.top) > 120;
+
+    const farFromTitle = y > titleRect.bottom + 60;
+
+    if (farFromYes && farFromTitle) safe = true;
+  }
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  let textX = x;
+  let textY = y + 60;
+
+const textWidth = noText.offsetWidth || 200;
+
+if (textX + textWidth > window.innerWidth) {
+    textX = window.innerWidth - textWidth - 10;
+}
+
+if (textX < 0) {
+    textX = 10;
+}
+
+  if (textY + 100 > window.innerHeight) {
+    textY = y - 50;
+  }
+
+  noText.style.left = textX + "px";
+  noText.style.top = textY + "px";
+
+  yesSize += 0.1;
+  noSize -= 0.05;
+  if (noSize < 0.5) noSize = 0.5;
+
+  yesBtn.style.transform = `scale(${yesSize})`;
+  noBtn.style.transform = `scale(${noSize})`;
+
+  const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+  noText.innerText = randomMsg;
+}
+
+// hover effect
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+// YES click
+yesBtn.addEventListener("click", () => {
+  document.body.innerHTML = "";
+
+  const finalMsg = document.createElement("h1");
+  finalMsg.innerText = "Yay!!! 💕 I knew Tu haaa boligiiii 😍";
+  finalMsg.style.color = "#ff0066";
+  finalMsg.style.marginTop = "100px";
+
+  document.body.appendChild(finalMsg);
+
+  createHearts();
+});
 </script>
 
 </body>
